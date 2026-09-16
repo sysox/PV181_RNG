@@ -1,0 +1,5 @@
+notebook==6.5.7
+ipykernel==6.29.5
+traitlets==5.9.0
+cryptography==39.0.2
+
