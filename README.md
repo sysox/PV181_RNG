@@ -4,6 +4,8 @@ Seminar on cryptographic and pseudo-random number generators. Theory, implementa
 
 ## Quick Start
 
+### Local (Recommended)
+
 **Windows:**
 ```powershell
 .\install_windows.ps1
@@ -17,6 +19,11 @@ python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 jupyter notebook
 ```
+
+### Cloud (No Installation)
+
+Can't install locally? Run in browser via Binder:  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sysox/PV181_RNG/HEAD)
 
 Then open `PV181_RNG_python.ipynb` in Jupyter.
 
