@@ -28,7 +28,7 @@ PV181_RNG/
 
 One command starts everything:
 ```powershell
-.\StartNotebook_Windows.ps1
+.\install_windows.ps1
 ```
 
 This creates venv, installs packages, and launches Jupyter.
