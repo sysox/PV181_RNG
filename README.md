@@ -24,23 +24,26 @@ PV181_RNG/
 
 ## 🚀 Quick Start
 
-### 1. Setup Environment
+### 1. Setup Environment (No Admin Needed)
 
-**Linux:**
+**Linux/macOS:**
 ```bash
-bash install_linux.sh
+python3 -m venv venv
 source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-**Windows (PowerShell, run as Administrator):**
+**Windows:**
 ```powershell
-.\install_windows.ps1
+python -m venv venv
 .\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
+
+*(Optional: Run `install_linux.sh` or `install_windows.ps1` first if you need to install gcc/openssl for C tasks)*
 
 ### 2. Run Notebooks
 
-Start Jupyter:
 ```bash
 jupyter notebook
 ```
@@ -113,29 +116,57 @@ See **[codes/README.md](codes/README.md)** for detailed reference guide.
 
 ## 🔧 Installation & Troubleshooting
 
-### Linux
-- Supports apt (Debian/Ubuntu), yum (CentOS/RHEL), pacman (Arch)
-- Installs: gcc, python3, openssl, hexdump, build tools
-- Creates isolated Python virtual environment
+### Minimal Setup (No Admin Rights)
 
-### Windows
-- Requires Administrator privileges
-- Checks for Chocolatey or winget for package management
-- Optional: gcc (for C tasks), OpenSSL (for Task 1)
-- Creates isolated Python virtual environment
-
-**Manual installation:**
-If scripts fail, install manually:
-- Python 3.8+: https://www.python.org/downloads/
-- gcc: MinGW (Windows) or system package manager
-- OpenSSL: https://www.openssl.org/community/binaries.html
-
-Then run:
+Requires only Python 3.8+ already installed:
 ```bash
-python -m venv venv
-source venv/bin/activate  # or .\venv\Scripts\Activate.ps1 on Windows
+python3 -m venv venv
+source venv/bin/activate        # Linux/macOS
+# or on Windows:
+# .\venv\Scripts\Activate.ps1
+
 pip install -r requirements.txt
 ```
+
+This is enough to run the Python notebook tasks.
+
+### Optional: C Tasks & System Tools
+
+For Tasks in PV181_RNG_C.ipynb, you may need:
+- **gcc/MinGW** — C compiler (for compiling example programs)
+- **OpenSSL** — For cryptographic operations (Task 1)
+- **hexdump, dd** — Linux utilities (pre-installed on most Linux systems)
+
+Run the setup scripts (require admin/sudo) to install these:
+
+**Linux (with sudo/admin):**
+```bash
+bash install_linux.sh
+```
+
+**Windows (PowerShell as Administrator):**
+```powershell
+.\install_windows.ps1
+```
+
+These scripts detect your package manager and install optional dependencies.
+
+### Troubleshooting
+
+**Python not found?**
+- Install Python 3.8+: https://www.python.org/downloads/
+
+**C compiler not found? (for RNG_C tasks only)**
+- Linux: `sudo apt-get install build-essential` (or equivalent for your distro)
+- Windows: Install MinGW https://www.mingw-w64.org/
+
+**OpenSSL not found? (optional, for Task 1 only)**
+- Linux: `sudo apt-get install openssl`
+- Windows: https://www.openssl.org/community/binaries.html
+
+**Jupyter not starting?**
+- Ensure venv is activated: `source venv/bin/activate` or `.\venv\Scripts\Activate.ps1`
+- Reinstall: `pip install --upgrade notebook ipykernel`
 
 ## 📝 Files Explained
 
