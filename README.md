@@ -24,31 +24,32 @@ PV181_RNG/
 
 ## 🚀 Quick Start
 
-### 1. Setup Environment (No Admin Needed)
+### Windows
 
-**Linux/macOS:**
+One command starts everything:
+```powershell
+.\StartNotebook_Windows.ps1
+```
+
+This creates venv, installs packages, and launches Jupyter.
+
+### Linux/macOS
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-```
-
-**Windows:**
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-*(Optional: Run `install_linux.sh` or `install_windows.ps1` first if you need to install gcc/openssl for C tasks)*
-
-### 2. Run Notebooks
-
-```bash
 jupyter notebook
 ```
 
-Then open:
+Or use the setup script:
+```bash
+bash install_linux.sh
+```
+
+### Open Notebooks
+
+Then in Jupyter, open:
 - **PV181_RNG_python.ipynb** — Main seminar (theory + tasks 1-20)
 - **PV181_RNG_C.ipynb** — System-level PRNG tasks (C implementation)
 
@@ -116,57 +117,39 @@ See **[codes/README.md](codes/README.md)** for detailed reference guide.
 
 ## 🔧 Installation & Troubleshooting
 
-### Minimal Setup (No Admin Rights)
+### Requirements
 
-Requires only Python 3.8+ already installed:
-```bash
-python3 -m venv venv
-source venv/bin/activate        # Linux/macOS
-# or on Windows:
-# .\venv\Scripts\Activate.ps1
+- **Python 3.8+** (only requirement)
+- No admin rights needed for Python notebook tasks
 
-pip install -r requirements.txt
-```
+### Optional: C Tasks & Tools
 
-This is enough to run the Python notebook tasks.
+For PV181_RNG_C.ipynb (optional advanced tasks), install:
+- **gcc/MinGW** — C compiler
+- **OpenSSL** — Cryptographic tools (Task 1)
+- **hexdump, dd** — Linux utilities (pre-installed on most Linux)
 
-### Optional: C Tasks & System Tools
-
-For Tasks in PV181_RNG_C.ipynb, you may need:
-- **gcc/MinGW** — C compiler (for compiling example programs)
-- **OpenSSL** — For cryptographic operations (Task 1)
-- **hexdump, dd** — Linux utilities (pre-installed on most Linux systems)
-
-Run the setup scripts (require admin/sudo) to install these:
-
-**Linux (with sudo/admin):**
-```bash
-bash install_linux.sh
-```
-
-**Windows (PowerShell as Administrator):**
-```powershell
-.\install_windows.ps1
-```
-
-These scripts detect your package manager and install optional dependencies.
+**Linux:** Run `bash install_linux.sh` (requires sudo)  
+**Windows:** Install manually from https://www.mingw-w64.org/ and https://www.openssl.org/
 
 ### Troubleshooting
 
 **Python not found?**
-- Install Python 3.8+: https://www.python.org/downloads/
+- Install from: https://www.python.org/downloads/
 
-**C compiler not found? (for RNG_C tasks only)**
-- Linux: `sudo apt-get install build-essential` (or equivalent for your distro)
-- Windows: Install MinGW https://www.mingw-w64.org/
+**Script won't run (Windows)?**
+- Open PowerShell as Administrator
+- Run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Then: `.\StartNotebook_Windows.ps1`
 
-**OpenSSL not found? (optional, for Task 1 only)**
-- Linux: `sudo apt-get install openssl`
-- Windows: https://www.openssl.org/community/binaries.html
+**Jupyter won't start?**
+- Ensure venv is activated
+- Try: `pip install --upgrade notebook ipykernel`
 
-**Jupyter not starting?**
-- Ensure venv is activated: `source venv/bin/activate` or `.\venv\Scripts\Activate.ps1`
-- Reinstall: `pip install --upgrade notebook ipykernel`
+**Missing gcc/OpenSSL? (C tasks only)**
+- Not needed for Python notebook
+- Linux: `sudo apt-get install build-essential openssl`
+- Windows: See Optional C Tasks section above
 
 ## 📝 Files Explained
 
