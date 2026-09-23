@@ -9,7 +9,7 @@ if ($LASTEXITCODE -ne 0 -or [version]$pythonVersion -lt [version]'3.8') {
 	throw "Python 3.8 or newer is required. Found: $pythonVersion"
 }
 
-function GetVenvPaths() {
+function GetVenvPaths {
 	$venvPath = Join-Path $ScriptDir "venv"
 	$pipPath = Join-Path $venvPath "Scripts\pip.exe"
 	$jupyterPath = Join-Path $venvPath "Scripts\jupyter.exe"
@@ -20,7 +20,7 @@ function GetVenvPaths() {
 	}
 }
 
-function ActivateVirtual() {
+function ActivateVirtual {
 	$paths = GetVenvPaths
 	if (-not (Test-Path $paths.venvPath)) {
 		Write-Host "Creating Python virtual environment..." -ForegroundColor Cyan
@@ -30,7 +30,7 @@ function ActivateVirtual() {
 	}
 }
 
-function InstallRequirements() {
+function InstallRequirements {
 	$paths = GetVenvPaths
 	Write-Host "Installing Python packages..." -ForegroundColor Cyan
 	& $paths.pipPath install --upgrade pip --quiet
@@ -38,13 +38,13 @@ function InstallRequirements() {
 	Write-Host "✓ Packages installed" -ForegroundColor Green
 }
 
-function StartNotebook() {
+function StartNotebook {
 	$paths = GetVenvPaths
 	Write-Host "Starting Jupyter notebook..." -ForegroundColor Green
 	& $paths.jupyterPath notebook (Join-Path $ScriptDir "PV181_RNG_python.ipynb")
 }
 
-function Main() {
+function Main {
 	Write-Host "=== PV181 RNG: Jupyter Setup & Start ===" -ForegroundColor Cyan
 	Write-Host
 
