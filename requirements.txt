@@ -1,5 +1,6 @@
-notebook==6.5.7
-ipykernel==6.29.5
-traitlets==5.9.0
-cryptography==39.0.2
+notebook>=7.0.0
+ipykernel>=6.29.5
+traitlets>=5.9.0
+cryptography>=39.0.2
+setuptools>=65.0.0
 
