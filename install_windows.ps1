@@ -26,7 +26,7 @@ function ActivateVirtual {
 		Write-Host "Creating Python virtual environment..." -ForegroundColor Cyan
 		python -m venv $paths.venvPath
 	} else {
-		Write-Host "✓ Virtual environment already exists" -ForegroundColor Green
+		Write-Host "[OK] Virtual environment already exists" -ForegroundColor Green
 	}
 }
 
@@ -35,7 +35,7 @@ function InstallRequirements {
 	Write-Host "Installing Python packages..." -ForegroundColor Cyan
 	& $paths.pipPath install --upgrade pip --quiet
 	& $paths.pipPath install -r (Join-Path $ScriptDir "requirements.txt")
-	Write-Host "✓ Packages installed" -ForegroundColor Green
+	Write-Host "[OK] Packages installed" -ForegroundColor Green
 }
 
 function StartNotebook {

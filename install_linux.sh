@@ -46,7 +46,7 @@ fi
 # Function to check if command exists
 check_cmd() {
     if command -v "$1" &> /dev/null; then
-        echo "✓ $1 found"
+        echo "[OK] $1 found"
         return 0
     else
         echo "✗ $1 not found - installing..."
@@ -100,7 +100,7 @@ if ! check_cmd dd; then
 fi
 
 echo
-echo "✓ All system dependencies installed"
+echo "[OK] All system dependencies installed"
 echo
 
 # Setup Python virtual environment
@@ -108,9 +108,9 @@ if [ ! -d "venv" ]; then
     echo "Creating Python virtual environment..."
     python3 -m venv venv
     "$SCRIPT_DIR/venv/bin/pip" install --upgrade pip
-    echo "✓ Virtual environment created"
+    echo "[OK] Virtual environment created"
 else
-    echo "✓ Virtual environment already exists"
+    echo "[OK] Virtual environment already exists"
 fi
 
 echo
@@ -119,7 +119,7 @@ echo
 if [ -f "requirements.txt" ]; then
     echo "Installing Python packages from requirements.txt..."
     "$SCRIPT_DIR/venv/bin/pip" install -r requirements.txt
-    echo "✓ Python packages installed"
+    echo "[OK] Python packages installed"
 else
     echo "⚠ requirements.txt not found"
 fi
