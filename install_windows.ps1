@@ -41,7 +41,7 @@ function InstallRequirements {
 function StartNotebook {
 	$paths = GetVenvPaths
 	Write-Host "Starting Jupyter notebook..." -ForegroundColor Green
-	& $paths.jupyterPath notebook (Join-Path $ScriptDir "PV181_RNG_python.ipynb")
+	& $paths.jupyterPath notebook (Join-Path $ScriptDir "PV181_RNG_python.ipynb") --NotebookApp.token='' --NotebookApp.password=''
 }
 
 function Main {

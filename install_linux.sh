@@ -134,4 +134,4 @@ echo "Ready to run PV181_RNG notebooks!"
 
 echo
 echo "Starting the main notebook..."
-"$SCRIPT_DIR/venv/bin/jupyter" notebook "$SCRIPT_DIR/PV181_RNG_python.ipynb"
+"$SCRIPT_DIR/venv/bin/jupyter" notebook "$SCRIPT_DIR/PV181_RNG_python.ipynb" --NotebookApp.token='' --NotebookApp.password=''
