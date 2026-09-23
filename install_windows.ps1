@@ -13,7 +13,7 @@ function GetVenvPaths {
 	$venvPath = Join-Path $ScriptDir "venv"
 	$pipPath = Join-Path $venvPath "Scripts\pip.exe"
 	$jupyterPath = Join-Path $venvPath "Scripts\jupyter.exe"
-	return @{
+	@{
 		venvPath = $venvPath
 		pipPath = $pipPath
 		jupyterPath = $jupyterPath
