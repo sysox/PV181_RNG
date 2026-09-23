@@ -69,6 +69,12 @@ if ! check_cmd python3; then
     $INSTALL_CMD python3 python3-pip
 fi
 
+# The notebook code and dependencies support Python 3.8 and newer.
+if ! python3 -c 'import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)' &> /dev/null; then
+    echo "❌ Python 3.8 or newer is required. Found: $(python3 --version)"
+    exit 1
+fi
+
 # Check python3-venv (needed for virtual environments)
 if ! python3 -m venv --help &> /dev/null; then
     echo "Installing python3-venv..."

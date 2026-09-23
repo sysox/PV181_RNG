@@ -4,6 +4,11 @@
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location -LiteralPath $ScriptDir
 
+$pythonVersion = & python -c "import sys; print(f'{sys.version_info[0]}.{sys.version_info[1]}')"
+if ($LASTEXITCODE -ne 0 -or [version]$pythonVersion -lt [version]'3.8') {
+	throw "Python 3.8 or newer is required. Found: $pythonVersion"
+}
+
 function GetVenvPaths() {
 	$venvPath = Join-Path $ScriptDir "venv"
 	$pipPath = Join-Path $venvPath "Scripts\pip.exe"
