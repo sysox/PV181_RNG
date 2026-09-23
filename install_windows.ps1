@@ -4,26 +4,39 @@
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location -LiteralPath $ScriptDir
 
-function ActivateVirtual() {
+function GetVenvPaths() {
 	$venvPath = Join-Path $ScriptDir "venv"
-	if (-not (Test-Path $venvPath)) {
-		Write-Host "Creating Python virtual environment..." -ForegroundColor Cyan
-		python -m venv $venvPath
+	$pipPath = Join-Path $venvPath "Scripts\pip.exe"
+	$jupyterPath = Join-Path $venvPath "Scripts\jupyter.exe"
+	return @{
+		venvPath = $venvPath
+		pipPath = $pipPath
+		jupyterPath = $jupyterPath
 	}
-	Write-Host "Activating virtual environment..." -ForegroundColor Cyan
-	& (Join-Path $venvPath "Scripts\Activate.ps1")
+}
+
+function ActivateVirtual() {
+	$paths = GetVenvPaths
+	if (-not (Test-Path $paths.venvPath)) {
+		Write-Host "Creating Python virtual environment..." -ForegroundColor Cyan
+		python -m venv $paths.venvPath
+	} else {
+		Write-Host "✓ Virtual environment already exists" -ForegroundColor Green
+	}
 }
 
 function InstallRequirements() {
+	$paths = GetVenvPaths
 	Write-Host "Installing Python packages..." -ForegroundColor Cyan
-	pip install --upgrade pip --quiet
-	pip install -r (Join-Path $ScriptDir "requirements.txt")
+	& $paths.pipPath install --upgrade pip --quiet
+	& $paths.pipPath install -r (Join-Path $ScriptDir "requirements.txt")
 	Write-Host "✓ Packages installed" -ForegroundColor Green
 }
 
 function StartNotebook() {
+	$paths = GetVenvPaths
 	Write-Host "Starting Jupyter notebook..." -ForegroundColor Green
-	jupyter notebook (Join-Path $ScriptDir "PV181_RNG_python.ipynb")
+	& $paths.jupyterPath notebook (Join-Path $ScriptDir "PV181_RNG_python.ipynb")
 }
 
 function Main() {

@@ -101,12 +101,10 @@ echo
 if [ ! -d "venv" ]; then
     echo "Creating Python virtual environment..."
     python3 -m venv venv
-    source venv/bin/activate
-    pip install --upgrade pip
+    "$SCRIPT_DIR/venv/bin/pip" install --upgrade pip
     echo "✓ Virtual environment created"
 else
     echo "✓ Virtual environment already exists"
-    source venv/bin/activate
 fi
 
 echo
@@ -114,7 +112,7 @@ echo
 # Install Python packages from requirements.txt
 if [ -f "requirements.txt" ]; then
     echo "Installing Python packages from requirements.txt..."
-    pip install -r requirements.txt
+    "$SCRIPT_DIR/venv/bin/pip" install -r requirements.txt
     echo "✓ Python packages installed"
 else
     echo "⚠ requirements.txt not found"
@@ -124,10 +122,10 @@ echo
 echo "=== Setup Complete ==="
 echo
 echo "To activate the environment in future sessions, run:"
-echo "    source venv/bin/activate"
+echo "    source $SCRIPT_DIR/venv/bin/activate"
 echo
 echo "Ready to run PV181_RNG notebooks!"
 
 echo
 echo "Starting the main notebook..."
-jupyter notebook "$SCRIPT_DIR/PV181_RNG_python.ipynb"
+"$SCRIPT_DIR/venv/bin/jupyter" notebook "$SCRIPT_DIR/PV181_RNG_python.ipynb"
