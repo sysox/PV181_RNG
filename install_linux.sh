@@ -4,6 +4,11 @@
 
 set -e
 
+# Always work from the directory containing this script, even when launched
+# using an absolute or relative path from another directory.
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
 echo "=== PV181 RNG Environment Setup (Linux) ==="
 echo
 
@@ -122,3 +127,7 @@ echo "To activate the environment in future sessions, run:"
 echo "    source venv/bin/activate"
 echo
 echo "Ready to run PV181_RNG notebooks!"
+
+echo
+echo "Starting the main notebook..."
+jupyter notebook "$SCRIPT_DIR/PV181_RNG_python.ipynb"

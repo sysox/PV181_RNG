@@ -17,8 +17,9 @@ bash install_linux.sh
 # or manually:
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-jupyter notebook
 ```
+
+The installation script starts Jupyter and opens `PV181_RNG_python.ipynb` in your browser automatically after setup.
 
 ### Cloud (No Installation)
 
